@@ -1,3 +1,5 @@
+## Foi o primeiro projeto, não sabia como editar aqui no github
+
 ## Projeto Loja Python
 
 Este é um projeto simples em Python de uma loja virtual. Ele foi desenvolvido como um exercício para aprender sobre programação e estruturas de dados, e ainda está em desenvolvimento.
