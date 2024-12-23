@@ -1,0 +1,52 @@
+[
+    {
+        "nome": "notebook",
+        "quantidade": 30000,
+        "valor": 6000.0
+    },
+    {
+        "nome": "monitor",
+        "quantidade": 1000,
+        "valor": 2500.0
+    },
+    {
+        "nome": "teclado",
+        "quantidade": 15000,
+        "valor": 400.0
+    },
+    {
+        "nome": "mouse",
+        "quantidade": 992,
+        "valor": 120.0
+    },
+    {
+        "nome": "hd externo",
+        "quantidade": 70000,
+        "valor": 500.0
+    },
+    {
+        "nome": "placa de vídeo",
+        "quantidade": 2000,
+        "valor": 8000.0
+    },
+    {
+        "nome": "ssd",
+        "quantidade": 975,
+        "valor": 300.0
+    },
+    {
+        "nome": "roteador",
+        "quantidade": 2000,
+        "valor": 150.0
+    },
+    {
+        "nome": "impressora",
+        "quantidade": 3000,
+        "valor": 700.0
+    },
+    {
+        "nome": "câmera",
+        "quantidade": 999,
+        "valor": 250.0
+    }
+]
