@@ -1,24 +1,32 @@
-## Foi o primeiro projeto, não sabia como editar aqui no github
+## 📦 Projeto Loja Python: Sistema de E-commerce CLI
 
-## Projeto Loja Python
+Este repositório contém o código-fonte de um sistema de loja virtual, desenvolvido em Python, que simula o fluxo de compra e gestão de estoque via *Command Line Interface* (CLI). O projeto é modular e utiliza estruturas de dados nativas da linguagem para a lógica de negócio.
 
-Este é um projeto simples em Python de uma loja virtual. Ele foi desenvolvido como um exercício para aprender sobre programação e estruturas de dados, e ainda está em desenvolvimento.
+### 💻 Tecnologias
 
-## Descrição
+* **Linguagem:** Python.
+* **Persistência:** Arquivos **JSON** são utilizados para armazenar dados do catálogo de produtos e credenciais.
 
-O projeto simula uma loja onde os clientes podem visualizar produtos e fazer compras. A ideia é entender como organizar um programa simples com menus e interações entre o usuário e o sistema.
+### ⚙️ Estrutura e Módulos
 
-Este é apenas um protótipo básico. Ainda falta muitas funcionalidades, como cadastro de clientes, formas de pagamento, etc.
+O projeto é organizado modularmente, com responsabilidades bem definidas:
 
-## Funcionalidades
+* **`main.py`:** Ponto de entrada e orquestrador do Menu Principal.
+* **`funcoes.py`:** Biblioteca de utilitários que contém funções de validação de entradas, manipulação de arquivos JSON e lógica de edição do carrinho.
+* **`loja_online.py` / `loja_online_logado.py`:** Módulos que gerenciam o fluxo de navegação do cliente, visualização do catálogo, adição ao carrinho e checkout.
+* **`login_cliente.py`:** Módulo dedicado à simulação do processo de login e cadastro de clientes.
+* **`estoque_gerente.py`:** Módulo que implementa o painel gerencial, incluindo a lógica CRUD (Criar, Ler, Atualizar, Deletar) para produtos e relatórios de vendas.
 
-- Exibir uma lista de **produtos** disponíveis para compra.
-- Permitir que o **usuário adicione produtos** ao carrinho.
-- **Simular a finalização da compra** (ainda não implementada corretamente).
+### ✨ Funcionalidades
 
-Este é um projeto para estudo e aprendizado, não está completo, mas já tem uma boa base para quem está começando a programar.
+O sistema contém as seguintes funcionalidades operacionais:
 
-## Tecnologias
-
-- **Python**: Linguagem de programação usada para construir o projeto.
-- **Funções e estruturas básicas**: Utiliza funções, loops, listas e dicionários para organizar os dados.
+* **Catálogo de Produtos:** Exibe uma lista de produtos disponíveis com nome, valor e quantidade em estoque.
+* **Carrinho de Compras:** Permite ao usuário adicionar produtos, visualizar o resumo, editar a quantidade de itens e excluir produtos antes de finalizar o pedido.
+* **Autenticação de Cliente:** Funcionalidades de Login e Cadastro para clientes, com verificação de credenciais em arquivos JSON.
+* **Checkout Simulado:** Apresenta opções de pagamento (PIX, Cartão e Boleto) e simula a conclusão da transação.
+* **Gerenciamento de Estoque:** Painel administrativo com autenticação, que permite:
+    * Cadastrar novos produtos.
+    * Editar nome, valor ou quantidade de produtos existentes.
+    * Excluir produtos.
+    * Gerar relatórios de vendas (Dia, Semana, Mês).
