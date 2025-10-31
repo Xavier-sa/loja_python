@@ -50,3 +50,13 @@ class ValidacaoService:
                 return int(valor)
             except ValueError:
                 print(f"\n{ValidacaoService.RED}Informe um número inteiro válido!{ValidacaoService.RESET}")
+                
+                
+    @staticmethod
+    def validar_email(mensagem: str) -> str:
+        """Valida formato de email básico"""
+        while True:
+            email = input(mensagem).strip().lower()
+            if "@" in email and "." in email:
+                return email
+            print(f"\n{ValidacaoService.RED}Email inválido!{ValidacaoService.RESET}")

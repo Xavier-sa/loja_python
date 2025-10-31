@@ -1,12 +1,12 @@
 [
     {
         "nome": "teclado",
-        "quantidade": 15000,
+        "quantidade": 15,
         "valor": 400.0
     },
     {
         "nome": "mouse",
-        "quantidade": 992,
+        "quantidade": 991,
         "valor": 120.0
     },
     {
