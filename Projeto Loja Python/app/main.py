@@ -38,11 +38,73 @@ class MainController:
                     print(f"\n{ValidacaoService.RED}Opção inválida!{ValidacaoService.RESET}")
     
     def acessar_loja(self):
-        print("\n🎁 ACESSANDO LOJA...")
-        # Implementação simplificada para demonstração
+        Helpers.limpar_tela()
+        print("🛒 LOJA ONLINE")
+        print("=" * 40)
+        
         produtos = self.produto_controller.listar_produtos()
+        if not produtos:
+            print("Nenhum produto disponível no momento.")
+            input("\nPressione Enter para voltar...")
+            return
+        
         ProdutoView.mostrar_produtos(produtos)
+        
+        print("\nOpções:")
+        print("  (1) Comprar produto")
+        print("  (2) Voltar")
+        
+        try:
+            opcao = ValidacaoService.validar_inteiro("\nOpção: ")
+            if opcao == 1:
+                self.comprar_produto()
+        except KeyboardInterrupt:
+            pass
+        
         input("\nPressione Enter para voltar...")
+
+def comprar_produto(self):
+    """Fluxo simplificado de compra"""
+    nome_produto = input("\nNome do produto que deseja comprar: ").strip().lower()
+    produto = self.produto_controller.buscar_produto_por_nome(nome_produto)
+    
+    if not produto:
+        print(f"\n{ValidacaoService.RED}❌ Produto não encontrado!{ValidacaoService.RESET}")
+        return
+    
+    if produto.quantidade <= 0:
+        print(f"\n{ValidacaoService.RED}❌ Produto fora de estoque!{ValidacaoService.RESET}")
+        return
+    
+    print(f"\nProduto: {produto.nome}")
+    print(f"Estoque: {produto.quantidade}")
+    print(f"Valor: R$ {produto.valor:.2f}")
+    
+    try:
+        quantidade = ValidacaoService.validar_inteiro("\nQuantidade: ")
+        
+        if quantidade <= 0:
+            print(f"\n{ValidacaoService.RED}❌ Quantidade inválida!{ValidacaoService.RESET}")
+            return
+        
+        if quantidade > produto.quantidade:
+            print(f"\n{ValidacaoService.RED}❌ Quantidade maior que estoque disponível!{ValidacaoService.RESET}")
+            return
+        
+        valor_total = quantidade * produto.valor
+        print(f"\n💳 Valor total: R$ {valor_total:.2f}")
+        
+        confirmar = input("\nConfirmar compra? (s/n): ").lower()
+        if confirmar == 's':
+            if self.produto_controller.atualizar_estoque(produto.nome, quantidade):
+                print("\n✅ Compra realizada com sucesso!")
+            else:
+                print(f"\n{ValidacaoService.RED}❌ Erro ao processar compra!{ValidacaoService.RESET}")
+        else:
+            print("Compra cancelada.")
+            
+    except KeyboardInterrupt:
+        print("\nCompra cancelada.")
     
     def login_cadastro(self):
         while True:
