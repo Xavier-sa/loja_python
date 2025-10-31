@@ -112,6 +112,18 @@ python app/main.py
 - Email: `adm@loja.com`
 - Senha: `adm123`
 
+## 📊 Demonstração
+
+### Tela Inicial
+![Tela Inicial](app/views/assets/img/inicio.JPG)
+
+### Navegação Principal  
+![Menu Principal](app/views/assets/img/opcao1.JPG)
+
+### Fluxo de Compra
+![Fluxo de Compra](app/views/assets/img/opcao1-1.JPG)
+
+
 ## 👨‍💻 Desenvolvimento
 
 O projeto segue boas práticas de desenvolvimento:
