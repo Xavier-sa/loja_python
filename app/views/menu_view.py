@@ -18,7 +18,7 @@ class MenuView:
         print("  (1) CADASTRAR PRODUTO")
         print("  (2) EDITAR PRODUTO")
         print("  (3) EXCLUIR PRODUTO")
-        print("  (4) RELATÓRIO DE VENDAS-(em )")
+        print("  (4) RELATÓRIO DE VENDAS")
         print("  (5) LISTAR PRODUTOS")
         print("  (6) SAIR")
         print("=" * 40)
