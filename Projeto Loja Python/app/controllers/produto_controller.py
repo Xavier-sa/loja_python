@@ -37,3 +37,10 @@ class ProdutoController:
             self.produtos.pop(indice)
             return self.salvar_produtos()
         return False
+    
+    def buscar_produto_por_nome(self, nome: str):
+        """Busca produto pelo nome (case insensitive)"""
+        for produto in self.produtos:
+            if produto.nome.lower() == nome.lower():
+                return produto
+        return None
