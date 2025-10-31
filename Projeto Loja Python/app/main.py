@@ -12,6 +12,7 @@ class MainController:
     
     def executar(self):
         Helpers.limpar_tela()
+        print("=" *30)
         print("🛒 SISTEMA LOJA PYTHON")
         print("=" * 30)
         
@@ -63,50 +64,50 @@ class MainController:
         
         input("\nPressione Enter para voltar...")
 
-def comprar_produto(self):
-    """Fluxo simplificado de compra"""
-    nome_produto = input("\nNome do produto que deseja comprar: ").strip().lower()
-    produto = self.produto_controller.buscar_produto_por_nome(nome_produto)
-    
-    if not produto:
-        print(f"\n{ValidacaoService.RED}❌ Produto não encontrado!{ValidacaoService.RESET}")
-        return
-    
-    if produto.quantidade <= 0:
-        print(f"\n{ValidacaoService.RED}❌ Produto fora de estoque!{ValidacaoService.RESET}")
-        return
-    
-    print(f"\nProduto: {produto.nome}")
-    print(f"Estoque: {produto.quantidade}")
-    print(f"Valor: R$ {produto.valor:.2f}")
-    
-    try:
-        quantidade = ValidacaoService.validar_inteiro("\nQuantidade: ")
+    def comprar_produto(self):  # CORRIGIDO: indentação correta
+        """Fluxo simplificado de compra"""
+        nome_produto = input("\nNome do produto que deseja comprar: ").strip().lower()
+        produto = self.produto_controller.buscar_produto_por_nome(nome_produto)
         
-        if quantidade <= 0:
-            print(f"\n{ValidacaoService.RED}❌ Quantidade inválida!{ValidacaoService.RESET}")
+        if not produto:
+            print(f"\n{ValidacaoService.RED}❌ Produto não encontrado!{ValidacaoService.RESET}")
             return
         
-        if quantidade > produto.quantidade:
-            print(f"\n{ValidacaoService.RED}❌ Quantidade maior que estoque disponível!{ValidacaoService.RESET}")
+        if produto.quantidade <= 0:
+            print(f"\n{ValidacaoService.RED}❌ Produto fora de estoque!{ValidacaoService.RESET}")
             return
         
-        valor_total = quantidade * produto.valor
-        print(f"\n💳 Valor total: R$ {valor_total:.2f}")
+        print(f"\nProduto: {produto.nome}")
+        print(f"Estoque: {produto.quantidade}")
+        print(f"Valor: R$ {produto.valor:.2f}")
         
-        confirmar = input("\nConfirmar compra? (s/n): ").lower()
-        if confirmar == 's':
-            if self.produto_controller.atualizar_estoque(produto.nome, quantidade):
-                print("\n✅ Compra realizada com sucesso!")
-            else:
-                print(f"\n{ValidacaoService.RED}❌ Erro ao processar compra!{ValidacaoService.RESET}")
-        else:
-            print("Compra cancelada.")
+        try:
+            quantidade = ValidacaoService.validar_inteiro("\nQuantidade: ")
             
-    except KeyboardInterrupt:
-        print("\nCompra cancelada.")
+            if quantidade <= 0:
+                print(f"\n{ValidacaoService.RED}❌ Quantidade inválida!{ValidacaoService.RESET}")
+                return
+            
+            if quantidade > produto.quantidade:
+                print(f"\n{ValidacaoService.RED}❌ Quantidade maior que estoque disponível!{ValidacaoService.RESET}")
+                return
+            
+            valor_total = quantidade * produto.valor
+            print(f"\n💳 Valor total: R$ {valor_total:.2f}")
+            
+            confirmar = input("\nConfirmar compra? (s/n): ").lower()
+            if confirmar == 's':
+                if self.produto_controller.atualizar_estoque(produto.nome, quantidade):
+                    print("\n✅ Compra realizada com sucesso!")
+                else:
+                    print(f"\n{ValidacaoService.RED}❌ Erro ao processar compra!{ValidacaoService.RESET}")
+            else:
+                print("Compra cancelada.")
+                
+        except KeyboardInterrupt:
+            print("\nCompra cancelada.")
     
-    def login_cadastro(self):
+    def login_cadastro(self):  # CORRIGIDO: código duplicado removido
         while True:
             Helpers.limpar_tela()
             print("🔐 LOGIN / CADASTRO")
@@ -129,19 +130,7 @@ def comprar_produto(self):
                     break
                 case _:
                     print(f"\n{ValidacaoService.RED}Opção inválida!{ValidacaoService.RESET}")
-                    input("Pressione Enter para continuar...")        while True:
-                MenuView.mostrar_menu_login()
-                opcao = ValidacaoService.validar_inteiro("\nOpção: ")
-                
-                match opcao:
-                    case 1:
-                        self.login_cliente()
-                    case 2:
-                        self.cadastrar_cliente()
-                    case 3:
-                        break
-                    case _:
-                        print(f"\n{ValidacaoService.RED}Opção inválida!{ValidacaoService.RESET}")
+                    input("Pressione Enter para continuar...")
     
     def login_cliente(self):
         print("\n--- LOGIN CLIENTE ---")

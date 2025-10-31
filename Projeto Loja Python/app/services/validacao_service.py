@@ -38,3 +38,15 @@ class ValidacaoService:
             print('*', end='', flush=True)
         
         return ''.join(password)
+    
+    @staticmethod
+    def validar_inteiro(mensagem: str) -> int:
+        """Valida entrada de número inteiro"""
+        while True:
+            try:
+                valor = input(mensagem)
+                if not valor:
+                    raise ValueError
+                return int(valor)
+            except ValueError:
+                print(f"\n{ValidacaoService.RED}Informe um número inteiro válido!{ValidacaoService.RESET}")
