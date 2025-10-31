@@ -44,3 +44,12 @@ class ProdutoController:
             if produto.nome.lower() == nome.lower():
                 return produto
         return None
+    
+    
+    def atualizar_estoque(self, nome_produto: str, quantidade_vendida: int) -> bool:
+        """Atualiza estoque após venda"""
+        produto = self.buscar_produto_por_nome(nome_produto)
+        if produto and produto.quantidade >= quantidade_vendida:
+            produto.quantidade -= quantidade_vendida
+            return self.salvar_produtos()
+        return False

@@ -1,15 +1,5 @@
 [
     {
-        "nome": "notebook",
-        "quantidade": 30000,
-        "valor": 6000.0
-    },
-    {
-        "nome": "monitor",
-        "quantidade": 1000,
-        "valor": 2500.0
-    },
-    {
         "nome": "teclado",
         "quantidade": 15000,
         "valor": 400.0
@@ -18,5 +8,20 @@
         "nome": "mouse",
         "quantidade": 992,
         "valor": 120.0
+    },
+    {
+        "nome": "Gestão Riscos",
+        "quantidade": 1,
+        "valor": 15000.0
+    },
+    {
+        "nome": "Notebook",
+        "quantidade": 1000,
+        "valor": 3000.0
+    },
+    {
+        "nome": "Gestão Financeira",
+        "quantidade": 1,
+        "valor": 1500.0
     }
 ]

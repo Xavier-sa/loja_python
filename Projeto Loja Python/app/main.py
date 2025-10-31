@@ -4,6 +4,8 @@ from views.menu_view import MenuView
 from views.produto_view import ProdutoView
 from services.validacao_service import ValidacaoService
 from utils.helpers import Helpers
+import json
+import os
 
 class MainController:
     def __init__(self):
@@ -12,7 +14,7 @@ class MainController:
     
     def executar(self):
         Helpers.limpar_tela()
-        print("=" *30)
+        print("=" * 30)
         print("🛒 SISTEMA LOJA PYTHON")
         print("=" * 30)
         
@@ -64,7 +66,7 @@ class MainController:
         
         input("\nPressione Enter para voltar...")
 
-    def comprar_produto(self):  # CORRIGIDO: indentação correta
+    def comprar_produto(self):
         """Fluxo simplificado de compra"""
         nome_produto = input("\nNome do produto que deseja comprar: ").strip().lower()
         produto = self.produto_controller.buscar_produto_por_nome(nome_produto)
@@ -107,7 +109,7 @@ class MainController:
         except KeyboardInterrupt:
             print("\nCompra cancelada.")
     
-    def login_cadastro(self):  # CORRIGIDO: código duplicado removido
+    def login_cadastro(self):
         while True:
             Helpers.limpar_tela()
             print("🔐 LOGIN / CADASTRO")
@@ -275,10 +277,127 @@ class MainController:
         input("\nPressione Enter para voltar...")
     
     def relatorio_vendas(self):
-        print("\n--- RELATÓRIO DE VENDAS ---")
-        print("Funcionalidade em desenvolvimento...")
-        # Implementar relatórios baseados nos arquivos JSON existentes
-        input("\nPressione Enter para voltar...")
+        Helpers.limpar_tela()
+        print("📊 RELATÓRIO DE VENDAS")
+        print("=" * 50)
+        
+        # Carregar dados de vendas
+        vendas_dia = self.carregar_vendas("data/Estoque/Vendas/vendas_dia.json")
+        vendas_semana = self.carregar_vendas("data/Estoque/Vendas/vendas_semana.json") 
+        vendas_mes = self.carregar_vendas("data/Estoque/Vendas/vendas_mes.json")
+        
+        while True:
+            print("\n" + "=" * 40)
+            print("       RELATÓRIOS DISPONÍVEIS")
+            print("=" * 40)
+            print("  (1) VENDAS DO DIA")
+            print("  (2) VENDAS DA SEMANA")
+            print("  (3) VENDAS DO MÊS")
+            print("  (4) RESUMO GERAL")
+            print("  (5) VOLTAR")
+            print("=" * 40)
+            
+            try:
+                opcao = ValidacaoService.validar_inteiro("\nOpção: ")
+            except KeyboardInterrupt:
+                break
+            
+            match opcao:
+                case 1:
+                    self.mostrar_relatorio(vendas_dia, "VENDAS DO DIA")
+                case 2:
+                    self.mostrar_relatorio(vendas_semana, "VENDAS DA SEMANA")
+                case 3:
+                    self.mostrar_relatorio(vendas_mes, "VENDAS DO MÊS")
+                case 4:
+                    self.mostrar_resumo_geral(vendas_dia, vendas_semana, vendas_mes)
+                case 5:
+                    break
+                case _:
+                    print(f"\n{ValidacaoService.RED}Opção inválida!{ValidacaoService.RESET}")
+
+    def carregar_vendas(self, caminho: str):
+        """Carrega dados de vendas do arquivo JSON"""
+        try:
+            with open(caminho, "r", encoding="utf-8") as arquivo:
+                return json.load(arquivo)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    def mostrar_relatorio(self, vendas, titulo: str):
+        """Mostra relatório específico de vendas"""
+        Helpers.limpar_tela()
+        print(f"📊 {titulo}")
+        print("=" * 50)
+        
+        if not vendas:
+            print("\n📭 Nenhuma venda registrada neste período.")
+            input("\nPressione Enter para continuar...")
+            return
+        
+        total_vendas = 0
+        total_quantidade = 0
+        
+        print(f"\n{'PRODUTO':<20} {'QTD':<8} {'VALOR UNIT':<12} {'TOTAL':<12}")
+        print("-" * 55)
+        
+        for venda in vendas:
+            if isinstance(venda, dict):
+                nome = venda.get('nome', 'Desconhecido')
+                quantidade = venda.get('quantidade', 0)
+                valor_unit = venda.get('valor', 0)
+                
+                # Se o valor for total da venda, calcular unitário
+                if quantidade > 0:
+                    valor_unitario = valor_unit / quantidade
+                else:
+                    valor_unitario = valor_unit
+                    
+                valor_total = valor_unit
+                total_vendas += valor_total
+                total_quantidade += quantidade
+                
+                print(f"{nome:<20} {quantidade:<8} R$ {valor_unitario:<9.2f} R$ {valor_total:<9.2f}")
+        
+        print("-" * 55)
+        print(f"{'TOTAL':<20} {total_quantidade:<8} {'':<12} R$ {total_vendas:<9.2f}")
+        
+        print(f"\n📈 Resumo:")
+        print(f"   • Total de vendas: R$ {total_vendas:,.2f}")
+        print(f"   • Quantidade de itens: {total_quantidade}")
+        print(f"   • Ticket médio: R$ {total_vendas/max(total_quantidade, 1):.2f}")
+        
+        input("\nPressione Enter para continuar...")
+
+    def mostrar_resumo_geral(self, vendas_dia, vendas_semana, vendas_mes):
+        """Mostra resumo geral de todos os períodos"""
+        Helpers.limpar_tela()
+        print("📈 RESUMO GERAL DE VENDAS")
+        print("=" * 50)
+        
+        def calcular_total(vendas):
+            total = 0
+            for venda in vendas:
+                if isinstance(venda, dict):
+                    total += venda.get('valor', 0)
+            return total
+        
+        total_dia = calcular_total(vendas_dia)
+        total_semana = calcular_total(vendas_semana)
+        total_mes = calcular_total(vendas_mes)
+        
+        print(f"\n📅 VENDAS DO DIA:     R$ {total_dia:>10,.2f}")
+        print(f"📅 VENDAS DA SEMANA: R$ {total_semana:>10,.2f}")
+        print(f"📅 VENDAS DO MÊS:    R$ {total_mes:>10,.2f}")
+        print("-" * 40)
+        print(f"💰 TOTAL ACUMULADO:  R$ {(total_dia + total_semana + total_mes):>10,.2f}")
+        
+        # Estatísticas adicionais
+        print(f"\n📊 Estatísticas:")
+        print(f"   • Média diária:    R$ {total_mes/30:>10,.2f}")
+        print(f"   • Projeção mensal: R$ {total_semana * 4:>10,.2f}")
+        
+        input("\nPressione Enter para continuar...")
 
 if __name__ == "__main__":
     app = MainController()

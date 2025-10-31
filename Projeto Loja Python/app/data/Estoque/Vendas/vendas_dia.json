@@ -1,0 +1,12 @@
+[
+    {
+        "nome": "notebook",
+        "quantidade": 2,
+        "valor": 12000.0
+    },
+    {
+        "nome": "mouse", 
+        "quantidade": 5,
+        "valor": 600.0
+    }
+]
