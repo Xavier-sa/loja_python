@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "notebook",
+        "quantidade": 8,
+        "valor": 48000.0
+    },
+    {
+        "nome": "teclado",
+        "quantidade": 12,
+        "valor": 4800.0
+    },
+    {
+        "nome": "mouse",
+        "quantidade": 25,
+        "valor": 3000.0
+    }
+]

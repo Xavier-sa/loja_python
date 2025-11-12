@@ -1,0 +1,1 @@
+## “Se aparecer erros, só mover os tres arquivos para onde está a main.”
