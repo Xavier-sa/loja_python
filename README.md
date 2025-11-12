@@ -97,13 +97,19 @@ Projeto Loja Python/
 
 ```bash
 
+# 1
 git clone https://github.com/Xavier-sa/loja_python.git
 
+# 2
+cd loja_python
 
-cd "Projeto Loja Python"
-
-
+# 3.
 python app/main.py
+
+# OU execute diretamente na pasta app:
+cd loja_python/app
+python main.py
+
 ```
 
 ## 🔐 Credenciais Padrão
