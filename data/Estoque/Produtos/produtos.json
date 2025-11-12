@@ -1,0 +1,27 @@
+[
+    {
+        "nome": "teclado",
+        "quantidade": 15,
+        "valor": 400.0
+    },
+    {
+        "nome": "mouse",
+        "quantidade": 989,
+        "valor": 120.0
+    },
+    {
+        "nome": "Gestão Riscos",
+        "quantidade": 1,
+        "valor": 15000.0
+    },
+    {
+        "nome": "Notebook",
+        "quantidade": 1000,
+        "valor": 3000.0
+    },
+    {
+        "nome": "Gestão Financeira",
+        "quantidade": 1,
+        "valor": 1500.0
+    }
+]
