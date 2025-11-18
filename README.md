@@ -121,13 +121,13 @@ python main.py
 ## 📊 Demonstração
 
 ### Tela Inicial
-![Tela Inicial](app/views/assets/img/inicio.JPG)
+![Tela Inicial](./app/views/assets/img/inicio.JPG)
 
 ### Navegação Principal  
-![Menu Principal](app/views/assets/img/opcao1.JPG)
+![Menu Principal](./app/views/assets/img/opcao1.JPG)
 
 ### Fluxo de Compra
-![Fluxo de Compra](app/views/assets/img/opcao1-1.JPG)
+![Fluxo de Compra](./app/views/assets/img/opcao1-1.JPG)
 
 
 ## 👨‍💻 Desenvolvimento
